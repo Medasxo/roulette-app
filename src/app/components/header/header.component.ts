@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  apiKey = "https://dev-games-backend.advbet.com/v1/ab-roulette/1";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  onKey(event: any) {
+    this.apiKey = event.target.value;
   }
 
 }
