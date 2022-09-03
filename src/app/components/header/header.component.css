@@ -1,0 +1,29 @@
+.header {
+  height: 10%;
+  background-color: var(--darkBlue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem 0 5rem;
+}
+
+.apiBar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.apiBar label {
+  margin-left: 1rem;
+}
+
+.apiInput {
+  border: 0;
+  border-radius: 1rem;
+  height: 2rem;
+}
+
+.routes{
+    display: flex;
+    gap: 3rem;
+}
