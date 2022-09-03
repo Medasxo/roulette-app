@@ -1,5 +1,5 @@
 <app-header (newApiKey)="setAPI($event)"></app-header>
 <div class="main">
-    <app-statistics-block></app-statistics-block>
+    <app-statistics-block [apiKey]="apiKeyValue"></app-statistics-block>
     {{apiKeyValue}}
 </div>
