@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,7 @@ import { Component, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   apiKey = "https://dev-games-backend.advbet.com/v1/ab-roulette/1";
-
+  @Output() newApiKey = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   
   onKey(event: any) {
     this.apiKey = event.target.value;
+    this.newApiKey.emit(this.apiKey);
   }
 
 }

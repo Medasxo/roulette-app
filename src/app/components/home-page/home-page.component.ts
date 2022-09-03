@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  apiKeyValue="https://dev-games-backend.advbet.com/v1/ab-roulette/1";
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setAPI(apiValue: string){
+    this.apiKeyValue = apiValue;
   }
 
 }
