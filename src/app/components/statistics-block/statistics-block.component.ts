@@ -6,18 +6,27 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./statistics-block.component.css'],
 })
 export class StatisticsBlockComponent implements OnInit {
-  data = [];
+  Data = [];
+  Colors = [];
 
   @Input() apiKey!: String;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.getData(this.apiKey + '/stats');
+    this.getData(this.apiKey + '/stats?limit=200');
+    console.log(this.Data);
+    setInterval(() => {
+      this.getData(this.apiKey + '/stats?limit=200');
+    }, 100000);
+    this.getColor(this.apiKey + '/configuration');
   }
-  ngOnChanges(): void{
-    this.getData(this.apiKey + '/stats');
+  ngOnChanges(): void {
+    this.getData(this.apiKey + '/stats?limit=200');
+    console.log(this.Data);
+    this.getColor(this.apiKey + '/configuration');
   }
+
   getRequest(url: string) {
     return fetch(url).then((res) => {
       if (res.ok) {
@@ -30,7 +39,17 @@ export class StatisticsBlockComponent implements OnInit {
 
   getData(apiURL: string) {
     this.getRequest(apiURL).then((data) => {
-      this.data = data;
+      this.Data = data;
+      console.log(data);
     });
+  }
+  getColor(apiURL: string) {
+    this.getRequest(apiURL).then((data) => {
+      this.Colors = data['colors'];
+    });
+  }
+  convertStringToNumber(input: string) {
+    var numeric = Number(input);
+    return numeric;
   }
 }

@@ -1,1 +1,31 @@
-<p>statistics-block works!</p>
+<div *ngIf="Data.length > 0 && Colors" class="numberStatistics">
+  <h2>Number Statistics: (last 200)</h2>
+  <div class="numberGrid">
+    <div class="information">
+      <h4>SLOT:</h4>
+      <h4>HITS:</h4>
+    </div>
+    <div class="numberTab" *ngFor="let number of Data; let i = index">
+      <div
+        class="slot"
+        [ngClass]="{
+          green: Colors[convertStringToNumber(number['result'])] == 'green',
+          red: Colors[convertStringToNumber(number['result'])] == 'red',
+          black: Colors[convertStringToNumber(number['result'])] == 'black'
+        }"
+      >
+        {{ number["result"] | json }}
+      </div>
+      <div
+        class="hits"
+        [ngClass]="{
+          cold: i < 5,
+          neutral: i >= 5 && i < Data.length - 5,
+          hot: i >= Data.length - 5
+        }"
+      >
+        <p>{{ number["count"] | json }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,9 @@
     --blue: #25325c;
     --red: #ff0000;
     --mainFont: 'Contrail One', cursive;
+    --hot: rgb(224, 45, 45);
+    --cold: aquamarine;
+    --neutral: grey;
 }
 
 html, body{
