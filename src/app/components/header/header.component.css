@@ -21,9 +21,18 @@
   border: 0;
   border-radius: 1rem;
   height: 2rem;
+  color: var(--black);
+  font-family: var(--mainFont, sans-serif);
+  padding-left: 1rem;
+  padding-right: 0.5rem;
 }
 
-.routes{
-    display: flex;
-    gap: 3rem;
+.apiInput:focus{
+    outline: none;
+    box-shadow: 0 0 0.5rem var(--white);
+}
+
+.routes {
+  display: flex;
+  gap: 3rem;
 }
