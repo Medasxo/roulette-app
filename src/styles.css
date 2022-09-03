@@ -4,6 +4,7 @@
     --darkBlue: #0a1a51;
     --blue: #25325c;
     --red: #ff0000;
+    --mainFont: 'Contrail One', cursive;
 }
 
 html, body{
@@ -12,4 +13,5 @@ html, body{
     height: 100%;
     background-color: var(--blue);
     color: var(--white);
+    font-family: var(--mainFont);
 }
