@@ -18,6 +18,10 @@ export class GameboardComponent implements OnInit {
     this.getData(this.apiKey + "/configuration");
   }
 
+  ngOnChanges() {
+    this.getData(this.apiKey + "/configuration");
+  }
+
   getRequest(url: string) {
     return fetch(url).then((res) => {
       if (res.ok) {

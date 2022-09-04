@@ -30,7 +30,19 @@
   align-items: center;
   justify-content: center;
   outline: none;
-
+  border-left: 2px solid var(--white);
+  border-top: 2px solid var(--white);
   color: var(--white);
   font-family: var(--mainFont, sans-serif);
+}
+
+.slot:hover{
+  font-size: 18px;
+  border: 0;
+  border: 2px solid var(--white);
+
+}
+.slot:active{
+  border: 0;
+  color: black;
 }
