@@ -15,7 +15,6 @@ export class StatisticsBlockComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData(this.apiKey + '/stats?limit=200');
-    console.log(this.Data);
     setInterval(() => {
       this.getData(this.apiKey + '/stats?limit=200');
     }, 100000);
@@ -23,7 +22,6 @@ export class StatisticsBlockComponent implements OnInit {
   }
   ngOnChanges(): void {
     this.getData(this.apiKey + '/stats?limit=200');
-    console.log(this.Data);
     this.getColor(this.apiKey + '/configuration');
   }
 
@@ -40,7 +38,6 @@ export class StatisticsBlockComponent implements OnInit {
   getData(apiURL: string) {
     this.getRequest(apiURL).then((data) => {
       this.Data = data;
-      console.log(data);
     });
   }
   getColor(apiURL: string) {

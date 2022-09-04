@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { StatisticsBlockComponent } from './components/statistics-block/statistics-block.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { EventBlockComponent } from './components/event-block/event-block.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     StatisticsBlockComponent,
-    HomePageComponent
+    HomePageComponent,
+    EventBlockComponent
   ],
   imports: [
     BrowserModule,
