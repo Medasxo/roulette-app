@@ -3,7 +3,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 @Component({
   selector: 'app-event-block',
   templateUrl: './event-block.component.html',
-  styleUrls: ['./event-block.component.css']
+  styleUrls: ['./event-block.component.css'],
 })
 export class EventBlockComponent implements OnInit {
   @Input() apiKey!: String;
@@ -11,20 +11,18 @@ export class EventBlockComponent implements OnInit {
   fakeStartDelta = 0;
   startDelta = 0;
   gameId = 0;
-  text="";
+  text = '';
   result = null;
-  results: Array<{text:string}> = [];
+  results: Array<{ text: string }> = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.getData(this.apiKey+"/nextGame");
+    this.getData(this.apiKey + '/nextGame');
     this.setTimer();
-
   }
   ngOnChanges(changes: any) {
-    console.log(changes);
-    this.getData(this.apiKey+"/nextGame");
+    this.getData(this.apiKey + '/nextGame');
   }
   getRequest(url: string) {
     return fetch(url).then((res) => {
@@ -41,38 +39,41 @@ export class EventBlockComponent implements OnInit {
       this.Data = data;
       this.fakeStartDelta = data['fakeStartDelta'];
       this.startDelta = data['startDelta'];
-      this.gameId = (data['id']);
-      //console.log(data);
+      this.gameId = data['id'];
+      this.result = null;
     });
   }
 
   getResult(apiURL: string) {
     this.getRequest(apiURL).then((data) => {
       this.result = data['result'];
-      console.log(data);
-    })
+    });
   }
 
-  setTimer(){
+  setTimer() {
     setInterval(() => {
-      if(this.fakeStartDelta > 0 && this.startDelta > 0){
+      if (this.fakeStartDelta > 0 && this.startDelta > 0) {
         this.fakeStartDelta--;
         console.log(this.startDelta);
         this.startDelta--;
-        this.text= "Game " + this.gameId + " will start in " + this.fakeStartDelta + " sec";
-      }
-      else if(this.fakeStartDelta <= 0 && this.startDelta > 0){
+        this.text =
+          'Game ' +
+          this.gameId +
+          ' will start in ' +
+          this.fakeStartDelta +
+          ' sec';
+      } else if (this.fakeStartDelta <= 0 && this.startDelta > 0) {
         console.log(this.startDelta);
         this.startDelta--;
-        this.text= "Game " + this.gameId + " wheel is currently spinning...";
-      }
-      else if(this.startDelta == 0){
-        this.getResult(this.apiKey + "/game/" + this.gameId);
-        if(this.result !== null){
-          this.text = "Game " + this.gameId + " ended, result is " + this.result;
-          this.results.push({text: this.text});
+        this.text = 'Game ' + this.gameId + ' wheel is currently spinning...';
+      } else if (this.startDelta == 0) {
+        this.getResult(this.apiKey + '/game/' + this.gameId);
+        if (this.result !== null) {
+          this.text =
+            'Game ' + this.gameId + ' ended, result is ' + this.result;
+          this.results.push({ text: this.text });
           this.result = null;
-          this.getData(this.apiKey+"/nextGame");
+          this.getData(this.apiKey + '/nextGame');
         }
       }
     }, 1000);
