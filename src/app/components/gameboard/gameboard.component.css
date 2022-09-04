@@ -21,6 +21,10 @@
   margin-left: 2rem;
 }
 
+.gameboardComponent h2{
+  margin-bottom: 0.5rem;
+}
+
 .slot{
   display: flex;
   align-items: center;
