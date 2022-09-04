@@ -38,19 +38,6 @@
   border-top: 3px solid var(--darkBlue);
 }
 
-.cold {
-  background-color: var(--cold);
-  color: black;
-}
-
-.neutral {
-  background-color: var(--neutral);
-}
-
-.hot {
-  background-color: var(--hot);
-  color: black;
-}
 
 .information {
   display: flex;
@@ -63,7 +50,6 @@ h4 {
   height: 50%;
   margin: 0;
 }
-
 .green {
   background-color: green;
 }
@@ -75,3 +61,5 @@ h4 {
 .black {
   background-color: var(--black);
 }
+
+

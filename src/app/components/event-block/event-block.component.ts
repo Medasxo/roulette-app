@@ -62,7 +62,6 @@ export class EventBlockComponent implements OnInit {
           this.fakeStartDelta +
           ' sec';
       } else if (this.fakeStartDelta <= 0 && this.startDelta > 0) {
-        console.log(this.startDelta);
         this.startDelta--;
         this.text = 'Game ' + this.gameId + ' wheel is spinning...';
       } else if (this.startDelta == 0) {

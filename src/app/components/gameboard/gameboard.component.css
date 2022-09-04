@@ -1,0 +1,32 @@
+.gameboardContainer{
+  display: grid;
+  width: 40rem;
+  height: 8rem;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 0.2rem;
+  background-color: var(--darkBlue);
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--white);
+  box-shadow: 0 0 0.3rem var(--white);
+}
+
+.gameboardComponent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  margin-left: 2rem;
+}
+
+.slot{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+
+  color: var(--white);
+  font-family: var(--mainFont, sans-serif);
+}

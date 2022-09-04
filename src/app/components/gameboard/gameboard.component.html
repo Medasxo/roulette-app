@@ -1,0 +1,12 @@
+<div class="gameboardComponent">
+<h2>Gameboard</h2>
+<div class="gameboardContainer" *ngIf="positionID.length >0">
+  <button class="slot" *ngFor="let slot of positionID; let i=index" [ngClass]="{
+    green: Colors[slot] == 'green',
+    red: Colors[slot] == 'red',
+    black: Colors[slot] == 'black'
+  }">
+    {{slot}}
+</button>
+</div>
+</div>

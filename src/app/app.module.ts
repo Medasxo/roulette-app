@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { StatisticsBlockComponent } from './components/statistics-block/statistics-block.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { EventBlockComponent } from './components/event-block/event-block.component';
+import { GameboardComponent } from './components/gameboard/gameboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { EventBlockComponent } from './components/event-block/event-block.compon
     HeaderComponent,
     StatisticsBlockComponent,
     HomePageComponent,
-    EventBlockComponent
+    EventBlockComponent,
+    GameboardComponent
   ],
   imports: [
     BrowserModule,
