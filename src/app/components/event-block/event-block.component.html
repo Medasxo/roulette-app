@@ -1,7 +1,10 @@
-<p>upcoming-spin-timer works!</p>
-<div *ngIf="results.length > 0">
-<h2 *ngFor="let result of results">
-  {{result['text']}}
-</h2>
+
+<div class="eventsContainer">
+  <h2>Events</h2>
+  <div *ngIf="results.length > 0" class="oldEvents">
+    <p *ngFor="let result of results" class="eventTab">
+      {{ result["text"] }}
+    </p>
+  </div>
+  <p class="eventTab">{{ text }}</p>
 </div>
-<p>{{text}}</p>

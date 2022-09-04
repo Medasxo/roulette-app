@@ -11,6 +11,8 @@
   border-radius: 1rem;
   display: flex;
   background-color: var(--darkBlue);
+  border: 1px solid var(--white);
+  box-shadow: 0 0 0.3rem var(--white);
   gap: 0.5rem;
   flex: 0 0 100%;
   flex-basis: auto;

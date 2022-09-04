@@ -1,0 +1,32 @@
+.eventsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  margin-left: 5rem;
+  gap: 0.25rem;
+}
+.eventsContainer h2{
+  margin-bottom: 0.25rem;
+}
+
+.eventTab{
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--darkBlue);
+  border: 1px solid var(--white);
+  box-shadow: 0 0 0.3rem var(--white);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  border-radius: 1rem;
+  margin: 0;
+}
+
+.oldEvents{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
