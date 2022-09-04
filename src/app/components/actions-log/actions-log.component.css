@@ -1,0 +1,19 @@
+
+.actionsLogContainer{
+  background-color: var(--darkBlue);
+  width: 30rem;
+  height: 50rem;
+  border: 1px solid var(--white);
+  box-shadow: 0 0 0.3rem var(--white);
+  border-radius: 1rem;
+}
+
+.actionsLogComponent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionsLogComponent h2{
+  margin-bottom: 0.25rem;
+}

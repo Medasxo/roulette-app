@@ -8,6 +8,7 @@ import { StatisticsBlockComponent } from './components/statistics-block/statisti
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { EventBlockComponent } from './components/event-block/event-block.component';
 import { GameboardComponent } from './components/gameboard/gameboard.component';
+import { ActionsLogComponent } from './components/actions-log/actions-log.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GameboardComponent } from './components/gameboard/gameboard.component';
     StatisticsBlockComponent,
     HomePageComponent,
     EventBlockComponent,
-    GameboardComponent
+    GameboardComponent,
+    ActionsLogComponent
   ],
   imports: [
     BrowserModule,

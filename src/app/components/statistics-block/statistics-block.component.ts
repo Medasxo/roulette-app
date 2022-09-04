@@ -11,6 +11,7 @@ export class StatisticsBlockComponent implements OnInit {
 
   @Input() apiKey!: String;
 
+
   constructor() {}
 
   ngOnInit(): void {
