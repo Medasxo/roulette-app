@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-gameboard',
   templateUrl: './gameboard.component.html',
@@ -8,18 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GameboardComponent implements OnInit {
   positionID = [];
   Colors = [];
+  result = null;
+  gameID = 0;
+  startDelta = 0;
+
 
   @Input() apiKey!: String;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.positionID);
     this.getData(this.apiKey + "/configuration");
+    this.getTimer(this.apiKey + "/nextGame");
+    this.setTimer();
   }
 
   ngOnChanges() {
     this.getData(this.apiKey + "/configuration");
+    this.getTimer(this.apiKey + "/nextGame");
   }
 
   getRequest(url: string) {
@@ -36,7 +43,33 @@ export class GameboardComponent implements OnInit {
     this.getRequest(apiURL).then((data) => {
       this.positionID = data['positionToId'];
       this.Colors = data['colors'];
-      console.log(this.Colors);
+
+    });
+  }
+
+  getTimer(apiURL: string) {
+    this.getRequest(apiURL).then((data) => {
+      console.log(data);
+      this.gameID = data['id'];
+      this.startDelta = data['startDelta'];
+    });
+  }
+
+  setTimer() {
+    setInterval( () => {
+      if(this.startDelta > 0){
+        this.startDelta --;
+      }
+      else if(this.startDelta <= 0){
+        this.getResult(this.apiKey + "/game/" + this.gameID);
+        clearInterval();
+      }
+    }, 1000);
+  }
+  getResult(apiURL: string) {
+    this.getRequest(apiURL).then((data) => {
+      this.result = data['result'];
+      this.getTimer(this.apiKey + "/nextGame");
     });
   }
 }

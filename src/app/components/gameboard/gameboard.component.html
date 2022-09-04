@@ -4,7 +4,8 @@
   <button class="slot" *ngFor="let slot of positionID; let i=index" [ngClass]="{
     green: Colors[slot] == 'green',
     red: Colors[slot] == 'red',
-    black: Colors[slot] == 'black'
+    black: Colors[slot] == 'black',
+    highlight: (result !==null) && (result ===slot)
   }">
     {{slot}}
 </button>

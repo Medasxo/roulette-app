@@ -1,4 +1,4 @@
-.gameboardContainer{
+.gameboardContainer {
   display: grid;
   width: 40rem;
   height: 8rem;
@@ -12,7 +12,7 @@
   box-shadow: 0 0 0.3rem var(--white);
 }
 
-.gameboardComponent{
+.gameboardComponent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,11 +21,11 @@
   margin-left: 2rem;
 }
 
-.gameboardComponent h2{
+.gameboardComponent h2 {
   margin-bottom: 0.5rem;
 }
 
-.slot{
+.slot {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,13 +36,33 @@
   font-family: var(--mainFont, sans-serif);
 }
 
-.slot:hover{
+.slot:hover {
   font-size: 18px;
   border: 0;
   border: 2px solid var(--white);
-
 }
-.slot:active{
+.slot:active {
   border: 0;
   color: black;
+}
+
+.highlight {
+  animation: pulse 5s 1;
+}
+@keyframes pulse {
+  0% {
+    background-color: var(--white);
+  }
+  25% {
+    background-color: var(--hot);
+  }
+  50% {
+    background-color: var(--white);
+  }
+  75% {
+    background-color: var(--hot);
+  }
+  100% {
+    background-color: var(--white);
+  }
 }
