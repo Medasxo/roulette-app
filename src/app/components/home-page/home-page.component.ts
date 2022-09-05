@@ -131,4 +131,8 @@ export class HomePageComponent implements OnInit {
   newResult(newResult: number) {
     this.newResultValue = newResult;
   }
+
+  pushNewTextLog(logText: string){
+    this.log.push({text: logText});
+  }
 }

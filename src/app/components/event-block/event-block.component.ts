@@ -14,7 +14,9 @@ export class EventBlockComponent implements OnInit {
   @Input() startDelta!: number;
   @Input() gameId!: number;
   @Input() result!: any;
+  @Input() date!: string;
   @Output() newResult = new EventEmitter<number>();
+  @Output() logText = new EventEmitter<string>();
   text = '';
   results: Array<{ text: string }> = [];
 
@@ -39,15 +41,21 @@ export class EventBlockComponent implements OnInit {
       } else if (this.fakeStartDelta <= 0 && this.startDelta > 0) {
         this.startDelta--;
         this.text = 'Game ' + this.gameId + ' wheel is spinning...';
+
       } else if (this.startDelta == 0) {
         this.getResult(this.apiKey);
         if (this.result !== null) {
+          this.logText.emit(this.date + " GET .../game/ " + this.gameId + ",");
           this.newResult.emit(this.result)
           this.text =
             'Game ' + this.gameId + ' ended, result is ' + this.result;
           this.results.push({ text: this.text });
           this.result = null;
           this.getNextGame(this.apiKey);
+          this.logText.emit(this.date + " GET .../nextGame,");
+        }
+        else{
+          this.logText.emit(this.date + " GET .../game/ " + this.gameId + " failed,");
         }
       }
     }, 1000);
