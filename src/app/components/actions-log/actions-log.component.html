@@ -1,10 +1,8 @@
-<div class="actionsLogComponent" *ngIf="log.length> 0">
+<div class="actionsLogComponent" *ngIf="log.length > 0">
   <h2>Actions Log</h2>
   <div class="actionsLogContainer">
     <div class="logLine" *ngFor="let line of log; let i = index">
-      {{log[i]['text']}}
+      {{ log[i]["text"] }}
     </div>
   </div>
-
-
 </div>

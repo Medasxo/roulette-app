@@ -27,9 +27,9 @@
   padding-right: 0.5rem;
 }
 
-.apiInput:focus{
-    outline: none;
-    box-shadow: 0 0 0.5rem var(--white);
+.apiInput:focus {
+  outline: none;
+  box-shadow: 0 0 0.5rem var(--white);
 }
 
 .routes {

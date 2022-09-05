@@ -33,7 +33,7 @@ export class HomePageComponent implements OnInit {
     ':' +
     this.currentDate.getSeconds();
 
-    date = this.currentDate.toISOString();
+  date = this.currentDate.toISOString();
 
   constructor() {}
 
@@ -69,9 +69,11 @@ export class HomePageComponent implements OnInit {
         });
       })
       .catch((error) => {
+        setTimeout(() => {
+          this.getStats(this.apiKeyValue);
+        }, 3000);
         this.log.push({
-          text:
-            this.date + ' GET .../stats?limit=200 failed,',
+          text: this.date + ' GET .../stats?limit=200 failed, ',
         });
       });
   }
@@ -86,9 +88,11 @@ export class HomePageComponent implements OnInit {
         });
       })
       .catch((error) => {
+        setTimeout(() => {
+          this.getConfiguration(this.apiKeyValue);
+        }, 3000);
         this.log.push({
-          text:
-            this.date + ' GET .../configuration failed,',
+          text: this.date + ' GET .../configuration failed,',
         });
       });
   }
@@ -104,17 +108,16 @@ export class HomePageComponent implements OnInit {
         this.log.push({
           text: this.date + ' GET .../nextGame,',
         });
-
       })
 
       .catch((error) => {
-
+        setTimeout(() => {
+          this.getNextGame(this.apiKeyValue);
+        }, 3000);
         this.log.push({
           text: this.date + ' GET .../nextGame failed,',
         });
-
       });
-
   }
   getResult(apiKEY: string) {
     this.getRequest(apiKEY + '/game/' + this.gameId)
@@ -125,15 +128,9 @@ export class HomePageComponent implements OnInit {
         });
       })
       .catch((error) => {
-
         this.log.push({
-          text:
-            this.date +
-            ' GET .../game/' +
-            this.gameId +
-            ', failed,',
+          text: this.date + ' GET .../game/' + this.gameId + ', failed,',
         });
-
       });
   }
   newResult(newResult: number) {
