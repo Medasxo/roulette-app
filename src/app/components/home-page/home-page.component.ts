@@ -11,19 +11,24 @@ export class HomePageComponent implements OnInit {
   Stats = [];
   Configuration = {};
   Colors = [];
+  fakeStartDelta = 0;
+  startDelta = 0;
+  gameId = 0;
+  result = null;
   constructor() {}
 
   ngOnInit(): void {
     this.getStats(this.apiKeyValue);
     this.getConfiguration(this.apiKeyValue);
+    this.getNextGame(this.apiKeyValue);
   }
-  ngOnChanges() {
-  }
+  ngOnChanges() {}
 
   setAPI(apiValue: string) {
     this.apiKeyValue = apiValue;
     this.getStats(this.apiKeyValue);
     this.getConfiguration(this.apiKeyValue);
+    this.getNextGame(this.apiKeyValue);
   }
 
   getRequest(url: string) {
@@ -35,31 +40,57 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
-  getStats(apiURL: string) {
+  getStats(apiKEY: string) {
     //text = "GET .../stats?limit=200"
-    this.getRequest(apiURL + "/stats?limit=200").then((data) => {
-      this.Stats = data;
-    })
-    .catch(error => {
-      console.log("Couldn't get configuration");
-    });
+    this.getRequest(apiKEY + '/stats?limit=200')
+      .then((data) => {
+        this.Stats = data;
+      })
+      .catch((error) => {
+        console.log("Couldn't get configuration");
+      });
   }
 
-  getConfiguration(apiURL: string) {
+  getConfiguration(apiKEY: string) {
     //text = "GET .../configuration"
-    this.getRequest(apiURL + "/configuration").then((data) => {
-      this.Configuration = data;
-      this.Colors = data['colors'];
-      console.log(data);
-    })
-    .catch(error => {
-      console.log("Couldn't get Configuration");
-      const timer = setInterval( () =>{
-        this.getConfiguration(this.apiKeyValue);
-        if(this.Colors.length > 0){
-          clearInterval(timer);
-        }
-      }, 2000);
-    });
+    this.getRequest(apiKEY + '/configuration')
+      .then((data) => {
+        this.Configuration = data;
+        this.Colors = data['colors'];
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log("Couldn't get Configuration");
+        const timer = setInterval(() => {
+          this.getConfiguration(this.apiKeyValue);
+          if (this.Colors.length > 0) {
+            clearInterval(timer);
+          }
+        }, 2000);
+      });
+  }
+
+  getNextGame(apiKEY: string) {
+    //text = "GET .../nextGame"
+    this.getRequest(apiKEY + '/nextGame')
+      .then((data) => {
+        this.fakeStartDelta = data['fakeStartDelta'];
+        this.startDelta = data['startDelta'];
+        this.gameId = data['id'];
+        this.result = null;
+      })
+      .catch((error) => {
+        console.log("Couldn't get nextGame");
+      });
+  }
+  getResult(apiKEY: string) {
+    //text = "GET .../game/this.gameId"
+    this.getRequest(apiKEY + '/game/' + this.gameId)
+      .then((data) => {
+        this.result = data['result'];
+      })
+      .catch((error) => {
+        console.log("Couldn't get result");
+      });
   }
 }

@@ -2,7 +2,7 @@
 <div class="main">
     <app-statistics-block *ngIf="Stats.length>0 && Configuration!== undefined" [Stats]="Stats" [Colors]="Colors"></app-statistics-block>
     <div class="flexContainer">
-      <app-event-block [apiKey]="apiKeyValue"></app-event-block>
+      <app-event-block [apiKey]="apiKeyValue" [fakeStartDelta]="fakeStartDelta" [startDelta]="startDelta" [getNextGame]="getNextGame" [getResult]="getResult" [getRequest]="getRequest" [gameId]="gameId" [result]="result"></app-event-block>
       <app-gameboard [apiKey]="apiKeyValue"></app-gameboard>
       <app-actions-log></app-actions-log>
     </div>
