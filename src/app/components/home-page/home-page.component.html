@@ -4,7 +4,7 @@
   </app-statistics-block>
   <div class="flexContainer">
     <app-event-block (newResult)="newResult($event)" (logText)="pushNewTextLog($event)" [apiKey]="apiKeyValue" [fakeStartDelta]="fakeStartDelta" [startDelta]="startDelta"
-      [getNextGame]="getNextGame" [getResult]="getResult" [getRequest]="getRequest" [gameId]="gameId" [result]="result" [date] ="this.currentDate.toISOString()">
+      [getNextGame]="getNextGame" [getResult]="getResult" (afterSpinRefresh)="afterSpinRefresh()" [getRequest]="getRequest" [gameId]="gameId" [result]="result" [date] ="this.currentDate.toISOString()">
     </app-event-block>
     <app-gameboard [apiKey]="apiKeyValue" [positionID]="positionID" [Colors]="Colors" [result]="newResultValue"></app-gameboard>
     <app-actions-log [log]="log"></app-actions-log>

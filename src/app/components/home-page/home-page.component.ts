@@ -42,6 +42,7 @@ export class HomePageComponent implements OnInit {
   }
 
   onNewAPI(apiValue: string) {
+    this.result = null;
     this.apiKeyValue = apiValue;
     this.getStats(this.apiKeyValue);
     this.getConfiguration(this.apiKeyValue);
@@ -68,8 +69,7 @@ export class HomePageComponent implements OnInit {
       .catch((error) => {
         this.log.push({
           text:
-            this.currentDate.toISOString() +
-            ' GET .../stats?limit=200 failed,',
+            this.currentDate.toISOString() + ' GET .../stats?limit=200 failed,',
         });
       });
   }
@@ -114,6 +114,7 @@ export class HomePageComponent implements OnInit {
     this.getRequest(apiKEY + '/game/' + this.gameId)
       .then((data) => {
         this.result = data['result'];
+        console.log('result:' + data['result']);
         this.log.push({
           text: this.currentDate.toISOString() + ' GET .../game/' + this.gameId,
         });
@@ -132,7 +133,11 @@ export class HomePageComponent implements OnInit {
     this.newResultValue = newResult;
   }
 
-  pushNewTextLog(logText: string){
-    this.log.push({text: logText});
+  pushNewTextLog(logText: string) {
+    this.log.push({ text: logText });
+  }
+
+  afterSpinRefresh() {
+    this.getStats(this.apiKeyValue);
   }
 }

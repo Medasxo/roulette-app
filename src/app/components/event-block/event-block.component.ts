@@ -17,13 +17,14 @@ export class EventBlockComponent implements OnInit {
   @Input() date!: string;
   @Output() newResult = new EventEmitter<number>();
   @Output() logText = new EventEmitter<string>();
+  @Output() afterSpinRefresh = new EventEmitter();
   text = '';
   results: Array<{ text: string }> = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    if(this.fakeStartDelta !== undefined){
+    if (this.fakeStartDelta !== undefined) {
       this.setTimer();
     }
   }
@@ -41,21 +42,22 @@ export class EventBlockComponent implements OnInit {
       } else if (this.fakeStartDelta <= 0 && this.startDelta > 0) {
         this.startDelta--;
         this.text = 'Game ' + this.gameId + ' wheel is spinning...';
-
       } else if (this.startDelta == 0) {
         this.getResult(this.apiKey);
         if (this.result !== null) {
-          this.logText.emit(this.date + " GET .../game/ " + this.gameId + ",");
-          this.newResult.emit(this.result)
+          this.newResult.emit(this.result);
           this.text =
             'Game ' + this.gameId + ' ended, result is ' + this.result;
           this.results.push({ text: this.text });
           this.result = null;
           this.getNextGame(this.apiKey);
-          this.logText.emit(this.date + " GET .../nextGame,");
-        }
-        else{
-          this.logText.emit(this.date + " GET .../game/ " + this.gameId + " failed,");
+          this.afterSpinRefresh.emit();
+          this.logText.emit(this.date + ' GET .../game/ ' + this.gameId + ',');
+          this.logText.emit(this.date + ' GET .../nextGame,');
+        } else {
+          this.logText.emit(
+            this.date + ' GET .../game/ ' + this.gameId + ' failed,'
+          );
         }
       }
     }, 1000);
