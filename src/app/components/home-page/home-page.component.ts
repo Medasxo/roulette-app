@@ -9,12 +9,14 @@ export class HomePageComponent implements OnInit {
   rouletteData = '';
   apiKeyValue = 'https://dev-games-backend.advbet.com/v1/ab-roulette/1/';
   Stats = [];
-  Configuration = {};
   Colors = [];
+  positionID = [];
   fakeStartDelta = 0;
   startDelta = 0;
   gameId = 0;
   result = null;
+  newResultValue = -1;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -22,7 +24,9 @@ export class HomePageComponent implements OnInit {
     this.getConfiguration(this.apiKeyValue);
     this.getNextGame(this.apiKeyValue);
   }
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.result);
+  }
 
   setAPI(apiValue: string) {
     this.apiKeyValue = apiValue;
@@ -55,9 +59,8 @@ export class HomePageComponent implements OnInit {
     //text = "GET .../configuration"
     this.getRequest(apiKEY + '/configuration')
       .then((data) => {
-        this.Configuration = data;
         this.Colors = data['colors'];
-        console.log(data);
+        this.positionID = data['positionToId'];
       })
       .catch((error) => {
         console.log("Couldn't get Configuration");
@@ -92,5 +95,8 @@ export class HomePageComponent implements OnInit {
       .catch((error) => {
         console.log("Couldn't get result");
       });
+  }
+  newResult(newResult: number){
+    this.newResultValue = newResult;
   }
 }

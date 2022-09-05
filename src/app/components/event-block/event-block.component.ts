@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-event-block',
@@ -14,6 +14,7 @@ export class EventBlockComponent implements OnInit {
   @Input() startDelta!: number;
   @Input() gameId!: number;
   @Input() result!: any;
+  @Output() newResult = new EventEmitter<number>();
   text = '';
   results: Array<{ text: string }> = [];
 
@@ -39,6 +40,7 @@ export class EventBlockComponent implements OnInit {
       } else if (this.startDelta == 0) {
         this.getResult(this.apiKey);
         if (this.result !== null) {
+          this.newResult.emit(this.result)
           this.text =
             'Game ' + this.gameId + ' ended, result is ' + this.result;
           this.results.push({ text: this.text });
