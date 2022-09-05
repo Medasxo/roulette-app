@@ -38,7 +38,6 @@
   border-top: 3px solid var(--darkBlue);
 }
 
-
 .information {
   display: flex;
   flex-direction: column;
@@ -61,5 +60,3 @@ h4 {
 .black {
   background-color: var(--black);
 }
-
-

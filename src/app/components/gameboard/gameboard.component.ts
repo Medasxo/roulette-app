@@ -49,7 +49,6 @@ export class GameboardComponent implements OnInit {
 
   getTimer(apiURL: string) {
     this.getRequest(apiURL).then((data) => {
-      console.log(data);
       this.gameID = data['id'];
       this.startDelta = data['startDelta'];
     });
