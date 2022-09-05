@@ -1,4 +1,4 @@
-<app-header (newApiKey)="setAPI($event)"></app-header>
+<app-header (newApiKey)="onNewAPI($event)"></app-header>
 <div class="main">
   <app-statistics-block *ngIf="Stats.length>0 && Colors.length >0" [Stats]="Stats" [Colors]="Colors">
   </app-statistics-block>
@@ -7,7 +7,7 @@
       [getNextGame]="getNextGame" [getResult]="getResult" [getRequest]="getRequest" [gameId]="gameId" [result]="result">
     </app-event-block>
     <app-gameboard [apiKey]="apiKeyValue" [positionID]="positionID" [Colors]="Colors" [result]="newResultValue"></app-gameboard>
-    <app-actions-log></app-actions-log>
+    <app-actions-log [log]="log"></app-actions-log>
   </div>
 
 </div>

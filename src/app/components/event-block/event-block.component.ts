@@ -21,7 +21,9 @@ export class EventBlockComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.setTimer();
+    if(this.fakeStartDelta !== undefined){
+      this.setTimer();
+    }
   }
   setTimer() {
     setInterval(() => {

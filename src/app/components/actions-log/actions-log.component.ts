@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-actions-log',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actions-log.component.css']
 })
 export class ActionsLogComponent implements OnInit {
-  actions: Array<{ text: string }> = [];
+ @Input() log!: any[];
   constructor() { }
 
   ngOnInit(): void {
+    console.log("length" + this.log.length);
+    console.log(this.log[0]['text']);
+  }
+  ngOnChanges(){
+    console.log(this.log);
   }
 
 }

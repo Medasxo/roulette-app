@@ -16,6 +16,22 @@ export class HomePageComponent implements OnInit {
   gameId = 0;
   result = null;
   newResultValue = -1;
+  log: Array<{ text: string }> = [];
+
+  currentDate = new Date();
+  dateTime =
+    'Last Sync: ' +
+    this.currentDate.getDate() +
+    '/' +
+    (this.currentDate.getMonth() + 1) +
+    '/' +
+    this.currentDate.getFullYear() +
+    ' @ ' +
+    this.currentDate.getHours() +
+    ':' +
+    this.currentDate.getMinutes() +
+    ':' +
+    this.currentDate.getSeconds();
 
   constructor() {}
 
@@ -24,11 +40,8 @@ export class HomePageComponent implements OnInit {
     this.getConfiguration(this.apiKeyValue);
     this.getNextGame(this.apiKeyValue);
   }
-  ngOnChanges() {
-    console.log(this.result);
-  }
 
-  setAPI(apiValue: string) {
+  onNewAPI(apiValue: string) {
     this.apiKeyValue = apiValue;
     this.getStats(this.apiKeyValue);
     this.getConfiguration(this.apiKeyValue);
@@ -45,58 +58,77 @@ export class HomePageComponent implements OnInit {
     });
   }
   getStats(apiKEY: string) {
-    //text = "GET .../stats?limit=200"
     this.getRequest(apiKEY + '/stats?limit=200')
       .then((data) => {
         this.Stats = data;
+        this.log.push({
+          text: this.currentDate.toISOString() + ' GET .../stats?limit=200,',
+        });
       })
       .catch((error) => {
-        console.log("Couldn't get configuration");
+        this.log.push({
+          text:
+            this.currentDate.toISOString() +
+            ' GET .../stats?limit=200 failed,',
+        });
       });
   }
 
   getConfiguration(apiKEY: string) {
-    //text = "GET .../configuration"
     this.getRequest(apiKEY + '/configuration')
       .then((data) => {
         this.Colors = data['colors'];
         this.positionID = data['positionToId'];
+        this.log.push({
+          text: this.currentDate.toISOString() + ' GET .../configuration,',
+        });
       })
       .catch((error) => {
-        console.log("Couldn't get Configuration");
-        const timer = setInterval(() => {
-          this.getConfiguration(this.apiKeyValue);
-          if (this.Colors.length > 0) {
-            clearInterval(timer);
-          }
-        }, 2000);
+        this.log.push({
+          text:
+            this.currentDate.toISOString() + ' GET .../configuration failed,',
+        });
       });
   }
 
   getNextGame(apiKEY: string) {
-    //text = "GET .../nextGame"
     this.getRequest(apiKEY + '/nextGame')
       .then((data) => {
         this.fakeStartDelta = data['fakeStartDelta'];
         this.startDelta = data['startDelta'];
         this.gameId = data['id'];
         this.result = null;
+        this.log.push({
+          text: this.currentDate.toISOString() + ' GET .../nextGame,',
+        });
       })
       .catch((error) => {
-        console.log("Couldn't get nextGame");
+        this.log.push({
+          text: this.currentDate.toISOString() + ' GET .../nextGame failed,',
+        });
       });
   }
   getResult(apiKEY: string) {
     //text = "GET .../game/this.gameId"
+    console.log('GET .../game' + this.gameId);
     this.getRequest(apiKEY + '/game/' + this.gameId)
       .then((data) => {
         this.result = data['result'];
+        this.log.push({
+          text: this.currentDate.toISOString() + ' GET .../game/' + this.gameId,
+        });
       })
       .catch((error) => {
-        console.log("Couldn't get result");
+        this.log.push({
+          text:
+            this.currentDate.toISOString() +
+            ' GET .../game/' +
+            this.gameId +
+            ', failed,',
+        });
       });
   }
-  newResult(newResult: number){
+  newResult(newResult: number) {
     this.newResultValue = newResult;
   }
 }

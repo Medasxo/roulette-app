@@ -17,3 +17,7 @@
 .actionsLogComponent h2{
   margin-bottom: 0.25rem;
 }
+.logLine{
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
