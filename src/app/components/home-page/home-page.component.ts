@@ -117,12 +117,9 @@ export class HomePageComponent implements OnInit {
 
   }
   getResult(apiKEY: string) {
-    //text = "GET .../game/this.gameId"
-    console.log('GET .../game' + this.gameId);
     this.getRequest(apiKEY + '/game/' + this.gameId)
       .then((data) => {
         this.result = data['result'];
-        console.log('result:' + data['result']);
         this.log.push({
           text: this.date + ' GET .../game/' + this.gameId,
         });

@@ -27,6 +27,8 @@
       [positionID]="positionID"
       [Colors]="Colors"
       [result]="newResultValue"
+      [date]="this.currentDate.toISOString()"
+      (newLogText)="pushNewTextLog($event)"
     ></app-gameboard>
     <app-actions-log [log]="log"></app-actions-log>
   </div>

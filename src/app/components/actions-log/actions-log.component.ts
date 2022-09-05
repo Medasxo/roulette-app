@@ -11,8 +11,5 @@ export class ActionsLogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  ngOnChanges(){
-    console.log(this.log);
-  }
 
 }
