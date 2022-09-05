@@ -20,6 +20,7 @@ export class EventBlockComponent implements OnInit {
   @Output() afterSpinRefresh = new EventEmitter();
   text = '';
   results: Array<{ text: string }> = [];
+  log: Array<{ text: string }> = [];
 
   constructor() {}
 

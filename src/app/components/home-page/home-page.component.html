@@ -1,13 +1,33 @@
 <app-header (newApiKey)="onNewAPI($event)"></app-header>
 <div class="main">
-  <app-statistics-block *ngIf="Stats.length>0 && Colors.length >0" [Stats]="Stats" [Colors]="Colors">
+  <app-statistics-block
+    *ngIf="Stats.length > 0 && Colors.length > 0"
+    [Stats]="Stats"
+    [Colors]="Colors"
+  >
   </app-statistics-block>
   <div class="flexContainer">
-    <app-event-block (newResult)="newResult($event)" (logText)="pushNewTextLog($event)" [apiKey]="apiKeyValue" [fakeStartDelta]="fakeStartDelta" [startDelta]="startDelta"
-      [getNextGame]="getNextGame" [getResult]="getResult" (afterSpinRefresh)="afterSpinRefresh()" [getRequest]="getRequest" [gameId]="gameId" [result]="result" [date] ="this.currentDate.toISOString()">
+    <app-event-block
+      (newResult)="newResult($event)"
+      (logText)="pushNewTextLog($event)"
+      [apiKey]="apiKeyValue"
+      [fakeStartDelta]="fakeStartDelta"
+      [startDelta]="startDelta"
+      [getNextGame]="getNextGame"
+      [getResult]="getResult"
+      (afterSpinRefresh)="afterSpinRefresh()"
+      [getRequest]="getRequest"
+      [gameId]="gameId"
+      [result]="result"
+      [date]="this.currentDate.toISOString()"
+    >
     </app-event-block>
-    <app-gameboard [apiKey]="apiKeyValue" [positionID]="positionID" [Colors]="Colors" [result]="newResultValue"></app-gameboard>
+    <app-gameboard
+      [apiKey]="apiKeyValue"
+      [positionID]="positionID"
+      [Colors]="Colors"
+      [result]="newResultValue"
+    ></app-gameboard>
     <app-actions-log [log]="log"></app-actions-log>
   </div>
-
 </div>

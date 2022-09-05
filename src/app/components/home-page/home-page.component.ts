@@ -33,6 +33,8 @@ export class HomePageComponent implements OnInit {
     ':' +
     this.currentDate.getSeconds();
 
+    date = this.currentDate.toISOString();
+
   constructor() {}
 
   ngOnInit(): void {
@@ -63,13 +65,13 @@ export class HomePageComponent implements OnInit {
       .then((data) => {
         this.Stats = data;
         this.log.push({
-          text: this.currentDate.toISOString() + ' GET .../stats?limit=200,',
+          text: this.date + ' GET .../stats?limit=200,',
         });
       })
       .catch((error) => {
         this.log.push({
           text:
-            this.currentDate.toISOString() + ' GET .../stats?limit=200 failed,',
+            this.date + ' GET .../stats?limit=200 failed,',
         });
       });
   }
@@ -80,13 +82,13 @@ export class HomePageComponent implements OnInit {
         this.Colors = data['colors'];
         this.positionID = data['positionToId'];
         this.log.push({
-          text: this.currentDate.toISOString() + ' GET .../configuration,',
+          text: this.date + ' GET .../configuration,',
         });
       })
       .catch((error) => {
         this.log.push({
           text:
-            this.currentDate.toISOString() + ' GET .../configuration failed,',
+            this.date + ' GET .../configuration failed,',
         });
       });
   }
@@ -98,15 +100,21 @@ export class HomePageComponent implements OnInit {
         this.startDelta = data['startDelta'];
         this.gameId = data['id'];
         this.result = null;
+
         this.log.push({
-          text: this.currentDate.toISOString() + ' GET .../nextGame,',
+          text: this.date + ' GET .../nextGame,',
         });
+
       })
+
       .catch((error) => {
+
         this.log.push({
-          text: this.currentDate.toISOString() + ' GET .../nextGame failed,',
+          text: this.date + ' GET .../nextGame failed,',
         });
+
       });
+
   }
   getResult(apiKEY: string) {
     //text = "GET .../game/this.gameId"
@@ -116,17 +124,19 @@ export class HomePageComponent implements OnInit {
         this.result = data['result'];
         console.log('result:' + data['result']);
         this.log.push({
-          text: this.currentDate.toISOString() + ' GET .../game/' + this.gameId,
+          text: this.date + ' GET .../game/' + this.gameId,
         });
       })
       .catch((error) => {
+
         this.log.push({
           text:
-            this.currentDate.toISOString() +
+            this.date +
             ' GET .../game/' +
             this.gameId +
             ', failed,',
         });
+
       });
   }
   newResult(newResult: number) {

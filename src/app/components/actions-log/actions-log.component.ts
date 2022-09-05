@@ -10,8 +10,6 @@ export class ActionsLogComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("length" + this.log.length);
-    console.log(this.log[0]['text']);
   }
   ngOnChanges(){
     console.log(this.log);
